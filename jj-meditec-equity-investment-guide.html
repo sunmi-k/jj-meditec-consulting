@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주주·지분·투자·IPO 실무 가이드 — JJ MEDITEC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --seller-blue: #4472C4;
+    --buyer-orange: #F4B084;
+    --included-green: #E2EFDA;
+    --excluded-gray: #D6DCE4;
+    --navy: #1B3A5C;
+    --highlight-yellow: #FFF2CC;
+    --dark-bg: #111;
+    --light-bg: #fafafa;
+    --text-dark: #1a1a1a;
+    --text-light: #f5f5f5;
+    --accent: #4472C4;
+    --border-light: #e0e0e0;
+    --border-dark: #333;
+    /* Equity-specific colors */
+    --ceo-blue: #4472C4;
+    --exec-green: #70AD47;
+    --vc1-orange: #F4B084;
+    --vc2-purple: #9B59B6;
+    --public-gray: #95A5A6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-dark);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Noto Serif KR', serif;
+    line-height: 1.35;
+  }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    background: var(--light-bg);
+    color: var(--text-dark);
+    padding: 60px 80px;
+    min-height: 100vh;
+  }
+  .section-dark {
+    background: var(--dark-bg);
+    color: var(--text-light);
+    padding: 60px 80px;
+    min-height: 100vh;
+  }
+
+  .section-label {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .section-dark .section-label {
+    color: #6ea8fe;
+  }
+
+  .section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 36px;
+    color: var(--text-dark);
+  }
+  .section-dark h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 36px;
+    color: #fff;
+  }
+
+  h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 40px 0 16px;
+  }
+  .section-dark h3 { color: #e8e8e8; }
+
+  h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 24px 0 10px;
+    color: var(--navy);
+  }
+  .section-dark h4 { color: #a0c4ff; }
+
+  p { margin-bottom: 14px; }
+  .section-dark p { color: #ccc; }
+
+  /* ─── COVER ─── */
+  .cover {
+    background: var(--dark-bg);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px;
+    position: relative;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 30% 40%, rgba(68,114,196,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 70%, rgba(155,89,182,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .cover-badge {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover h1 {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, #fff 0%, #a0c4ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cover-subtitle {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #999;
+    margin-bottom: 60px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    font-size: 13px;
+    color: #666;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 50px;
+  }
+  .cover-meta span { display: flex; flex-direction: column; gap: 4px; }
+  .cover-meta .label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; }
+  .cover-meta .value { color: #aaa; font-weight: 500; }
+  .cover-quote {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: #555;
+    max-width: 500px;
+    position: relative;
+    z-index: 1;
+    border-left: 2px solid var(--accent);
+    padding-left: 20px;
+    text-align: left;
+  }
+
+  /* ─── TOC ─── */
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-width: 700px;
+    margin: 40px auto 0;
+  }
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid #222;
+    cursor: default;
+    transition: background 0.2s;
+  }
+  .toc-item:hover { background: rgba(255,255,255,0.02); }
+  .toc-num {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 50px;
+  }
+  .toc-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .toc-desc {
+    font-size: 13px;
+    color: #777;
+    margin-top: 4px;
+    font-family: 'Pretendard', sans-serif;
+  }
+
+  /* ─── TABLES ─── */
+  .table-light {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  .table-light th {
+    background: var(--navy);
+    color: #fff;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .table-light td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+  }
+  .table-light tr:nth-child(even) { background: #f0f2f5; }
+
+  .data-table-dark {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  .data-table-dark th {
+    background: rgba(68,114,196,0.3);
+    color: #a0c4ff;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .data-table-dark td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #222;
+    color: #ccc;
+    vertical-align: top;
+  }
+  .data-table-dark tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+
+  /* ─── CARDS ─── */
+  .card {
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .card-body { font-size: 14px; color: #555; line-height: 1.8; }
+
+  .card-dark {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card-dark .card-title { color: #fff; }
+  .card-dark .card-body { color: #aaa; }
+
+  /* ─── Q-BLOCKS ─── */
+  .q-block {
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+  }
+  .section-dark .q-block {
+    background: rgba(255,255,255,0.04);
+    border-color: #2a2a2a;
+    border-left-color: var(--accent);
+  }
+  .q-num {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .q-main {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+  }
+  .section-dark .q-main { color: #fff; }
+  .q-sub {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+  }
+  .section-dark .q-sub { color: #999; }
+  .q-example {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: rgba(68,114,196,0.06);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .section-dark .q-example {
+    background: rgba(68,114,196,0.12);
+    color: #6ea8fe;
+  }
+
+  /* ─── GRIDS ─── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin: 24px 0; }
+
+  /* ─── HIGHLIGHT BOX ─── */
+  .highlight-box {
+    background: #f0f7ff;
+    border: 1px solid #c8ddf5;
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+  .highlight-box h4 { color: var(--navy); margin-top: 0; }
+  .highlight-box ul { padding-left: 20px; }
+  .highlight-box li { margin-bottom: 8px; font-size: 14px; color: #333; }
+
+  .highlight-dark {
+    background: rgba(68,114,196,0.08);
+    border: 1px solid rgba(68,114,196,0.2);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+  .highlight-dark h4 { color: #6ea8fe; margin-top: 0; }
+  .highlight-dark ul { padding-left: 20px; }
+  .highlight-dark li { margin-bottom: 8px; font-size: 14px; color: #bbb; }
+
+  /* ─── IMPORTANT NOTE BOX ─── */
+  .note-box {
+    background: #fff8e1;
+    border: 1px solid #f0d77a;
+    border-left: 5px solid #f0ad4e;
+    border-radius: 0 10px 10px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .note-box strong { color: #8a6d00; display: block; margin-bottom: 6px; font-size: 15px; }
+  .note-box p { color: #5a4700; margin-bottom: 0; font-size: 14px; }
+
+  /* ─── PIE CHARTS (Equity) ─── */
+  .pie-chart-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin: 40px 0;
+  }
+  .pie-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 260px;
+    max-width: 340px;
+  }
+  .pie-chart {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .pie-center-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+  }
+  .pie-center-label .pie-value {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+  .pie-center-label .pie-unit {
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    display: block;
+  }
+  .pie-stage-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .pie-stage-sub {
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .pie-info {
+    width: 100%;
+    font-size: 12px;
+    color: #999;
+    line-height: 1.8;
+  }
+  .pie-info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .pie-info-label { color: #888; }
+  .pie-info-value { color: #ddd; font-weight: 600; }
+
+  /* Pie chart legend */
+  .pie-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin: 20px 0 10px;
+  }
+  .pie-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #aaa;
+  }
+  .pie-legend-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+
+  /* ─── BAR CHART (CSS) ─── */
+  .bar-chart {
+    display: grid;
+    grid-template-columns: 120px 1fr 80px;
+    gap: 12px 16px;
+    align-items: center;
+    margin: 30px 0;
+  }
+  .bar-label {
+    font-size: 13px;
+    font-weight: 600;
+    text-align: right;
+  }
+  .bar-track {
+    height: 36px;
+    background: rgba(68,114,196,0.08);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    transition: width 0.6s ease;
+    min-width: 2px;
+  }
+  .bar-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .section-dark .bar-label { color: #ccc; }
+  .section-dark .bar-value { color: #6ea8fe; }
+
+  /* ─── STACKED BAR ─── */
+  .stacked-bar-container {
+    margin: 30px 0;
+  }
+  .stacked-bar-label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .stacked-bar {
+    display: flex;
+    height: 48px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .stacked-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    position: relative;
+    min-width: 30px;
+  }
+  .stacked-segment span {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  /* ─── DRAMATIC COMPARISON BOX ─── */
+  .dramatic-box {
+    background: linear-gradient(135deg, rgba(68,114,196,0.12) 0%, rgba(155,89,182,0.08) 100%);
+    border: 2px solid var(--accent);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin: 40px 0;
+    text-align: center;
+  }
+  .dramatic-box .dramatic-quote {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+  .dramatic-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 24px;
+    align-items: center;
+    margin-top: 16px;
+  }
+  .dramatic-item {
+    text-align: center;
+  }
+  .dramatic-item .d-label {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  .dramatic-item .d-value {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--accent);
+  }
+  .dramatic-item .d-sub {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+  }
+  .dramatic-arrow {
+    font-size: 32px;
+    color: #555;
+  }
+  .dramatic-result {
+    margin-top: 24px;
+    font-size: 16px;
+    color: #70AD47;
+    font-weight: 700;
+  }
+
+  /* ─── NUMBERED CARDS ─── */
+  .numbered-card {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .numbered-card .nc-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .section-dark .nc-num { background: rgba(68,114,196,0.2); color: #6ea8fe; }
+  .section .nc-num { background: rgba(68,114,196,0.1); color: var(--accent); }
+  .numbered-card .nc-content { flex: 1; }
+  .numbered-card .nc-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .section-dark .nc-title { color: #fff; }
+  .numbered-card .nc-body { font-size: 14px; color: #999; line-height: 1.8; }
+
+  /* ─── TIMELINE (IPO) ─── */
+  .ipo-timeline {
+    position: relative;
+    padding: 20px 0;
+    margin: 40px 0;
+  }
+  .ipo-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50px;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--accent), var(--vc2-purple), var(--exec-green));
+    border-radius: 2px;
+  }
+  .ipo-step {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .ipo-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    z-index: 2;
+    position: relative;
+    left: 31px;
+    border: 3px solid;
+  }
+  .ipo-step-content {
+    flex: 1;
+    padding-left: 20px;
+  }
+  .ipo-step-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .ipo-step-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .ipo-step-detail {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .section-dark .ipo-step-label { color: #6ea8fe; }
+  .section-dark .ipo-step-title { color: #fff; }
+  .section-dark .ipo-step-detail { color: #999; }
+
+  /* ─── CALLOUT TIP ─── */
+  .callout-tip {
+    display: flex;
+    gap: 16px;
+    padding: 18px 22px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .callout-tip.light {
+    background: #fffbe6;
+    border: 1px solid #f0e4a0;
+    color: #6b5900;
+  }
+  .callout-tip.dark {
+    background: rgba(255,242,204,0.06);
+    border: 1px solid rgba(255,242,204,0.15);
+    color: #e8d88c;
+  }
+  .callout-icon { font-size: 20px; flex-shrink: 0; line-height: 1.6; }
+
+  /* ─── STEP VISUAL ─── */
+  .step-container { margin: 30px 0; }
+  .step-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 0;
+    position: relative;
+  }
+  .step-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 50px;
+  }
+  .step-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+  .step-vline {
+    width: 2px;
+    flex: 1;
+    background: #333;
+    min-height: 20px;
+  }
+  .section .step-vline { background: #ddd; }
+  .step-content {
+    padding-bottom: 28px;
+    flex: 1;
+  }
+  .step-date {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .step-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .section-dark .step-title { color: #fff; }
+  .step-detail {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.8;
+  }
+  .step-highlight {
+    display: inline-block;
+    background: rgba(68,114,196,0.15);
+    color: var(--accent);
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 13px;
+    margin: 4px 0;
+  }
+  .section-dark .step-highlight { background: rgba(68,114,196,0.2); color: #6ea8fe; }
+
+  /* ─── NUMBERED LIST ─── */
+  .num-list { counter-reset: numlist; list-style: none; padding: 0; }
+  .num-list li {
+    counter-increment: numlist;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .num-list li::before {
+    content: counter(numlist);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* ─── MARGIN BOX ─── */
+  .margin-card {
+    background: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 14px;
+    padding: 28px;
+    margin: 24px 0;
+  }
+  .margin-card h4 { margin-top: 0; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--dark-bg);
+    color: #555;
+    padding: 40px 80px;
+    text-align: center;
+    font-size: 12px;
+    border-top: 1px solid #222;
+  }
+  .footer-brand {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #888;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+  }
+  .footer-conf {
+    color: #ff6b6b;
+    font-weight: 600;
+    margin-top: 12px;
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  /* ─── PRINT ─── */
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 12mm 10mm 14mm 10mm;
+    }
+    body { font-size: 11pt; }
+    .cover, .section, .section-dark {
+      min-height: auto;
+      padding: 30px 20px;
+      page-break-after: always;
+    }
+    .footer { page-break-after: avoid; }
+    table { page-break-inside: avoid; }
+    .q-block, .card, .card-dark, .highlight-box, .highlight-dark,
+    .dramatic-box, .margin-card, .pie-stage { page-break-inside: avoid; }
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    .section-dark, .cover, .footer {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ COVER PAGE ═══════════════════════ -->
+<div class="cover">
+  <div class="cover-badge">JJ MEDITEC &mdash; Equity &amp; Investment Series</div>
+  <h1>주주&middot;지분&middot;투자&middot;IPO<br>실무 가이드</h1>
+  <div class="cover-subtitle">JJ MEDITEC 성장 전략을 위한 지분 구조 설계 안내서</div>
+  <div class="cover-meta">
+    <span><span class="label">Client</span><span class="value">JJ MEDITEC</span></span>
+    <span><span class="label">Prepared by</span><span class="value">MOSLAB</span></span>
+    <span><span class="label">Date</span><span class="value">2026.03</span></span>
+    <span><span class="label">Version</span><span class="value">v1.0</span></span>
+  </div>
+  <div class="cover-quote">
+    "키위 한 개보다 수박 한 조각이 더 큽니다"
+  </div>
+</div>
+
+<!-- ═══════════════════════ TABLE OF CONTENTS ═══════════════════════ -->
+<div class="section-dark" style="display:flex; flex-direction:column; justify-content:center;">
+  <div class="section-label">Table of Contents</div>
+  <h2>목차</h2>
+  <div class="toc-grid">
+    <div class="toc-item">
+      <span class="toc-num">01</span>
+      <div>
+        <div class="toc-title">주식이란 무엇인가?</div>
+        <div class="toc-desc">피자 비유로 이해하는 주식&middot;주주&middot;자본금의 기초</div>
+      </div>
+    </div>
+    <div class="toc-item">
+      <span class="toc-num">02</span>
+      <div>
+        <div class="toc-title">투자와 희석</div>
+        <div class="toc-desc">투자 유치의 원리와 3단계 지분 시뮬레이션</div>
+      </div>
+    </div>
+    <div class="toc-item">
+      <span class="toc-num">03</span>
+      <div>
+        <div class="toc-title">밸류에이션</div>
+        <div class="toc-desc">회사의 가격표를 읽는 법 &mdash; Pre/Post-money &amp; 주당 가치</div>
+      </div>
+    </div>
+    <div class="toc-item">
+      <span class="toc-num">04</span>
+      <div>
+        <div class="toc-title">IPO와 경영권</div>
+        <div class="toc-desc">상장의 의미, 경영권 방어의 마법 숫자, 현실적 로드맵</div>
+      </div>
+    </div>
+    <div class="toc-item">
+      <span class="toc-num">05</span>
+      <div>
+        <div class="toc-title">JJ MEDITEC 맞춤 제안</div>
+        <div class="toc-desc">자본금 증자, 우선주 전략, 스톡옵션, 주주간 계약서 핵심</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ CHAPTER 01 ═══════════════════════ -->
+<div class="section">
+  <div class="section-label">Chapter 01</div>
+  <h2>주식이란 무엇인가?</h2>
+
+  <!-- 1.1 -->
+  <h3>1.1 피자로 이해하는 주식</h3>
+  <p style="font-size:17px; font-weight:500; color:var(--navy); margin-bottom:24px;">
+    "회사를 하나의 커다란 피자라고 생각해보세요."
+  </p>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title" style="color:var(--accent);">주식 (Stock)</div>
+      <div class="card-body">
+        피자를 몇 조각으로 나누었는지를 나타내는 <strong>종이</strong>입니다. 조각이 많을수록 더 잘게 나뉘어 있을 뿐, 피자 전체 크기는 같습니다.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--exec-green);">주주 (Shareholder)</div>
+      <div class="card-body">
+        그 종이(조각)를 들고 있는 사람 = <strong>회사의 공동 주인</strong>입니다. 조각을 많이 가진 사람이 더 큰 주인입니다.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--vc2-purple);">자본금 (Capital)</div>
+      <div class="card-body">
+        피자를 만들기 위해 처음 들어간 <strong>밀가루 값</strong>입니다. 피자의 원가이자 시작 재료비입니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- 1.2 -->
+  <h3>1.2 JJ MEDITEC의 현재 피자</h3>
+
+  <div class="margin-card" style="max-width:600px;">
+    <h4 style="margin-top:0; color:var(--navy);">JJ MEDITEC 현재 지분 현황</h4>
+    <table style="width:100%; font-size:15px; margin-top:12px;">
+      <tr><td style="padding:8px 0; color:#888;">1주의 금액</td><td style="padding:8px 0; font-weight:700; text-align:right;">5,000원</td></tr>
+      <tr><td style="padding:8px 0; color:#888; border-top:1px solid #eee;">총 주식 수</td><td style="padding:8px 0; font-weight:700; text-align:right; border-top:1px solid #eee;">200주 (보통주)</td></tr>
+      <tr><td style="padding:8px 0; color:#888; border-top:1px solid #eee;">자본금</td><td style="padding:8px 0; font-weight:700; text-align:right; border-top:1px solid #eee;">1,000,000원 (100만원)</td></tr>
+      <tr><td style="padding:8px 0; color:#888; border-top:1px solid #eee;">주주</td><td style="padding:8px 0; font-weight:700; text-align:right; border-top:1px solid #eee;">대표이사 1인 — 100%</td></tr>
+    </table>
+    <p style="margin-top:16px; margin-bottom:0; font-size:14px; color:#c0392b; font-style:italic; font-weight:600;">
+      ⚠ JJ MEDITEC은 현재 100만원 어치 밀가루로 시작한 매우 작은 피자입니다.<br>
+      &nbsp;&nbsp;&nbsp;정부 지원금 요건(자본금 5,000만원)에도 미달하는 상태입니다.
+    </p>
+  </div>
+
+  <div class="note-box">
+    <strong>핵심 포인트</strong>
+    <p>주주가 된다는 것은 대표님께 돈을 빌려주는 것이 아니라, 대표님과 동업자가 되어 이익과 리스크를 나누는 것입니다.</p>
+  </div>
+
+  <!-- 1.3 -->
+  <h3>1.3 보통주 vs 우선주</h3>
+
+  <div class="grid-2">
+    <div class="card" style="border-top:4px solid var(--ceo-blue);">
+      <div class="card-title" style="color:var(--ceo-blue);">보통주 (Common Stock)</div>
+      <div class="card-body">
+        <ul style="padding-left:18px;">
+          <li><strong>의결권 O</strong> &mdash; 주주총회에서 한 표 행사</li>
+          <li><strong>경영 참여</strong> &mdash; 이사 선임 등 의사결정</li>
+          <li><strong>배당 후순위</strong> &mdash; 우선주 배당 후 잔여분</li>
+        </ul>
+        <div style="margin-top:14px; padding:10px 14px; background:rgba(68,114,196,0.06); border-radius:6px; font-size:13px; color:var(--accent); font-weight:500;">
+          CEO와 임원이 보유하는 주식
+        </div>
+      </div>
+    </div>
+    <div class="card" style="border-top:4px solid var(--vc1-orange);">
+      <div class="card-title" style="color:#c07830;">우선주 (Preferred Stock)</div>
+      <div class="card-body">
+        <ul style="padding-left:18px;">
+          <li><strong>의결권 제한</strong> &mdash; 일반적으로 의결권 없음</li>
+          <li><strong>경영 불참</strong> &mdash; 경영 간섭 최소화</li>
+          <li><strong>배당 우선</strong> &mdash; 보통주보다 먼저 배당 수령</li>
+        </ul>
+        <div style="margin-top:14px; padding:10px 14px; background:rgba(244,176,132,0.12); border-radius:6px; font-size:13px; color:#c07830; font-weight:500;">
+          투자자가 보유 &mdash; 투자금 회수 안전장치
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ CHAPTER 02 ═══════════════════════ -->
+<div class="section-dark">
+  <div class="section-label">Chapter 02</div>
+  <h2>투자와 희석</h2>
+
+  <!-- 2.1 -->
+  <h3>2.1 투자 유치 = 피자 조각을 팔아 더 큰 오븐을 사는 것</h3>
+
+  <p>대표님이 300억 매출을 달성하려면 더 큰 오븐과 더 많은 재료가 필요합니다. 그 돈을 마련하는 방법이 바로 <strong style="color:#6ea8fe;">투자</strong>입니다.</p>
+
+  <div style="margin:30px 0;">
+    <div class="card-dark" style="border-left:4px solid var(--accent);">
+      <div class="card-body" style="font-size:15px; line-height:2;">
+        <strong style="color:#fff;">투자의 원리:</strong><br>
+        투자자는 대표님께 돈을 주는 대신 피자 조각을 가져갑니다.<br>
+        만약 100조각 중 20조각을 투자자에게 주면, 대표님 지분은 <strong style="color:#ff6b6b;">100% &rarr; 80%</strong><br>
+        이것이 <strong style="color:#6ea8fe;">'희석(Dilution)'</strong> &mdash; 내 조각 수는 그대로인데, 전체 비율이 줄어드는 것입니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.2 -->
+  <h3>2.2 실제 사례로 보는 3단계 시뮬레이션 — A사</h3>
+  <p style="color:#999; margin-bottom:10px;">아래는 <strong style="color:#6ea8fe;">A사</strong>(MOSLAB 클라이언트)의 실제 투자 사례입니다. JJ MEDITEC이 향후 투자를 받을 경우 어떤 변화가 생기는지 참고할 수 있습니다.</p>
+  <p style="color:#666; font-size:13px; margin-bottom:30px; padding:10px 16px; background:rgba(255,255,255,0.06); border-radius:6px;">※ 아래 숫자는 MOSLAB 클라이언트인 A사의 실제 데이터이며, JJ MEDITEC과는 다른 회사입니다.</p>
+
+  <!-- Pie Legend -->
+  <div class="pie-legend">
+    <div class="pie-legend-item"><span class="pie-legend-swatch" style="background:var(--ceo-blue);"></span> CEO</div>
+    <div class="pie-legend-item"><span class="pie-legend-swatch" style="background:var(--exec-green);"></span> 임원</div>
+    <div class="pie-legend-item"><span class="pie-legend-swatch" style="background:var(--vc1-orange);"></span> A~E 투자조합 (1차)</div>
+    <div class="pie-legend-item"><span class="pie-legend-swatch" style="background:var(--vc2-purple);"></span> F 투자조합 (2차)</div>
+  </div>
+
+  <!-- 3 Pie Charts -->
+  <div class="pie-chart-container">
+
+    <!-- Stage 1 -->
+    <div class="pie-stage">
+      <div class="pie-chart" style="background: conic-gradient(var(--ceo-blue) 0deg 360deg);">
+        <div class="pie-center-label">
+          <span class="pie-value">100%</span>
+          <span class="pie-unit">CEO</span>
+        </div>
+      </div>
+      <div class="pie-stage-title">Stage 1: 설립</div>
+      <div class="pie-stage-sub">"키위 한 개" &mdash; 2025.01.01</div>
+      <div class="pie-info">
+        <div class="pie-info-row"><span class="pie-info-label">기업가치</span><span class="pie-info-value">5억원</span></div>
+        <div class="pie-info-row"><span class="pie-info-label">1주 가치</span><span class="pie-info-value">500원</span></div>
+        <div class="pie-info-row"><span class="pie-info-label">총 주식 수</span><span class="pie-info-value">1,000,000주</span></div>
+      </div>
+    </div>
+
+    <!-- Stage 2 -->
+    <div class="pie-stage">
+      <div class="pie-chart" style="background: conic-gradient(
+        var(--ceo-blue) 0deg 254.2deg,
+        var(--exec-green) 254.2deg 281.9deg,
+        var(--vc1-orange) 281.9deg 360deg
+      );">
+        <div class="pie-center-label">
+          <span class="pie-value">775억</span>
+          <span class="pie-unit">기업가치</span>
+        </div>
+      </div>
+      <div class="pie-stage-title">Stage 2: 1차 VC 투자</div>
+      <div class="pie-stage-sub">"왕수박의 조각" &mdash; 2025.12.31</div>
+      <div class="pie-info">
+        <div class="pie-info-row"><span class="pie-info-label">CEO</span><span class="pie-info-value" style="color:var(--ceo-blue);">70.6%</span></div>
+        <div class="pie-info-row"><span class="pie-info-label">임원 (1~4)</span><span class="pie-info-value" style="color:var(--exec-green);">7.7%</span></div>
+        <div class="pie-info-row"><span class="pie-info-label">A~E 투자조합</span><span class="pie-info-value" style="color:var(--vc1-orange);">22.9%</span></div>
+        <div class="pie-info-row"><span class="pie-info-label">1주 가치</span><span class="pie-info-value">60,000원 (120&times;)</span></div>
+        <div class="pie-info-row"><span class="pie-info-label">총 주식 수</span><span class="pie-info-value">1,291,665주</span></div>
+        <div class="pie-info-row"><span class="pie-info-label">투자금</span><span class="pie-info-value">175억원</span></div>
+      </div>
+    </div>
+
+    <!-- Stage 3 -->
+    <div class="pie-stage">
+      <div class="pie-chart" style="background: conic-gradient(
+        var(--ceo-blue) 0deg 213.1deg,
+        var(--exec-green) 213.1deg 236.5deg,
+        var(--vc1-orange) 236.5deg 298.1deg,
+        var(--vc2-purple) 298.1deg 360deg
+      );">
+        <div class="pie-center-label">
+          <span class="pie-value">6,565억</span>
+          <span class="pie-unit">기업가치</span>
+        </div>
+      </div>
+      <div class="pie-stage-title">Stage 3: 2차 투자</div>
+      <div class="pie-stage-sub">2026.03 진행 중</div>
+      <div class="pie-info">
+        <div class="pie-info-row"><span class="pie-info-label">CEO</span><span class="pie-info-value" style="color:var(--ceo-blue);">59.2%</span></div>
+        <div class="pie-info-row"><span class="pie-info-label">임원 (1~4)</span><span class="pie-info-value" style="color:var(--exec-green);">6.5%</span></div>
+        <div class="pie-info-row"><span class="pie-info-label">A~E 투자조합</span><span class="pie-info-value" style="color:var(--vc1-orange);">17.1%</span></div>
+        <div class="pie-info-row"><span class="pie-info-label">F 투자조합</span><span class="pie-info-value" style="color:var(--vc2-purple);">16.2%</span></div>
+        <div class="pie-info-row"><span class="pie-info-label">1주 가치</span><span class="pie-info-value">425,807원 (852&times;)</span></div>
+        <div class="pie-info-row"><span class="pie-info-label">총 주식 수</span><span class="pie-info-value">1,541,665주</span></div>
+        <div class="pie-info-row"><span class="pie-info-label">F 투자금</span><span class="pie-info-value">1,065억원</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Dramatic Box -->
+  <div class="dramatic-box">
+    <div class="dramatic-quote">"키위 한 개보다 수박 한 조각이 더 큽니다"</div>
+    <p style="text-align:center; color:#888; font-size:13px; margin-bottom:16px;">A사 사례 기준</p>
+    <div class="dramatic-grid">
+      <div class="dramatic-item">
+        <div class="d-label">설립 시 CEO 100%</div>
+        <div class="d-value">5억원</div>
+        <div class="d-sub">키위 한 개를 통째로 가졌지만, 작은 키위</div>
+      </div>
+      <div class="dramatic-arrow">&rarr;</div>
+      <div class="dramatic-item">
+        <div class="d-label">2차 투자 후 CEO 59.2%</div>
+        <div class="d-value" style="color:var(--exec-green);">3,886억원</div>
+        <div class="d-sub">수박 조각 하나지만, 키위보다 훨씬 큼</div>
+      </div>
+    </div>
+    <div class="dramatic-result">
+      비율은 40.8% 줄었지만, 가치는 <span style="font-size:22px; color:#fff;">777배</span> 증가
+    </div>
+  </div>
+
+  <!-- 2.3 -->
+  <h3>2.3 희석은 왜 두렵지 않은가?</h3>
+
+  <div class="highlight-dark">
+    <h4>핵심 인사이트</h4>
+    <ul>
+      <li>피자 8조각 중 <strong style="color:#fff;">8조각(100%)</strong>을 갖고 있으면 피자 한 판 전부입니다. 하지만 피자가 작습니다.</li>
+      <li>투자를 받아 피자를 100배 키우면, <strong style="color:#fff;">6조각(59%)</strong>만 가져도 처음보다 훨씬 큰 양을 먹을 수 있습니다.</li>
+      <li style="color:#70AD47; font-weight:700;">성장하는 회사의 작은 조각 &gt; 정체된 회사의 큰 조각</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════ CHAPTER 03 ═══════════════════════ -->
+<div class="section">
+  <div class="section-label">Chapter 03</div>
+  <h2>밸류에이션</h2>
+
+  <!-- 3.1 -->
+  <h3>3.1 밸류에이션이란?</h3>
+  <p style="font-size:17px; font-weight:500; color:var(--navy); margin-bottom:20px;">
+    "얼마짜리 피자인지 정하는 것"
+  </p>
+  <p>투자자가 우리 피자에 얼마를 내고 한 조각을 살지 결정하는 <strong>가격표</strong>입니다. 밸류에이션이 높을수록 같은 금액을 투자하더라도 투자자가 가져가는 조각이 작아집니다.</p>
+
+  <!-- 3.2 -->
+  <h3>3.2 Pre-money vs Post-money</h3>
+
+  <div class="grid-2">
+    <div class="card" style="border-top:4px solid var(--navy);">
+      <div class="card-title" style="color:var(--navy);">Pre-money Valuation</div>
+      <div class="card-body">
+        <strong>투자 전</strong> 회사 가치<br><br>
+        "내 피자가 투자 받기 전에 얼마짜리인가"<br><br>
+        투자자와 협상으로 결정되는 출발점입니다.
+      </div>
+    </div>
+    <div class="card" style="border-top:4px solid var(--exec-green);">
+      <div class="card-title" style="color:var(--exec-green);">Post-money Valuation</div>
+      <div class="card-body">
+        <strong>투자 후</strong> 회사 가치<br><br>
+        Pre-money + 투자금 = Post-money<br><br>
+        투자자 지분율은 투자금 &divide; Post-money로 결정됩니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h4>A사 1차 라운드 실제 적용</h4>
+    <ul>
+      <li><strong>Pre-money:</strong> 775억 &minus; 175억 = <strong>600억원</strong></li>
+      <li><strong>투자금:</strong> A~E 투자조합 합계 175억원</li>
+      <li><strong>Post-money:</strong> 775억원</li>
+      <li><strong>투자자 지분:</strong> 175억 &divide; 775억 &asymp; <strong>22.6%</strong> (우선주)</li>
+    </ul>
+    <p style="font-size:13px; color:#888; margin-top:8px;">※ A사(MOSLAB 클라이언트) 실제 데이터 기준</p>
+  </div>
+
+  <!-- 3.3 -->
+  <h3>3.3 주당 가치의 성장</h3>
+
+  <table class="table-light">
+    <thead>
+      <tr>
+        <th>시점</th>
+        <th style="text-align:right;">1주 가치</th>
+        <th style="text-align:right;">배수</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>설립 (2025.01)</td>
+        <td style="text-align:right; font-weight:700;">500원</td>
+        <td style="text-align:right;">1&times;</td>
+      </tr>
+      <tr>
+        <td>1차 투자 (2025.12)</td>
+        <td style="text-align:right; font-weight:700; color:var(--accent);">60,000원</td>
+        <td style="text-align:right; font-weight:700;">120&times;</td>
+      </tr>
+      <tr>
+        <td>2차 투자 (2026.03)</td>
+        <td style="text-align:right; font-weight:700; color:var(--vc2-purple);">425,807원</td>
+        <td style="text-align:right; font-weight:700; color:var(--exec-green);">852&times;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- CSS Bar Chart -->
+  <div class="bar-chart" style="margin-top:30px;">
+    <div class="bar-label">설립 (2025.01)</div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:0.12%; background:var(--ceo-blue); min-width:6px;"></div>
+    </div>
+    <div class="bar-value">500원</div>
+
+    <div class="bar-label">1차 투자 (2025.12)</div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:14.1%; background:var(--vc1-orange);">60,000원</div>
+    </div>
+    <div class="bar-value">120&times;</div>
+
+    <div class="bar-label">2차 투자 (2026.03)</div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:100%; background:linear-gradient(90deg, var(--vc2-purple), var(--accent));">425,807원</div>
+    </div>
+    <div class="bar-value">852&times;</div>
+  </div>
+
+  <!-- 3.4 -->
+  <h3>3.4 밸류에이션은 어떻게 결정되나?</h3>
+
+  <div class="q-block">
+    <div class="q-num">METHOD 01</div>
+    <div class="q-main">매출 멀티플</div>
+    <div class="q-sub">매출 &times; 업종 배수로 산정합니다. 뷰티/의료기기 업종은 보통 5~15배의 멀티플이 적용됩니다.</div>
+    <div class="q-example">예: 연매출 100억 &times; 10배 = 기업가치 1,000억</div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-num">METHOD 02</div>
+    <div class="q-main">수익 기반 (EBITDA)</div>
+    <div class="q-sub">EBITDA(세전영업이익 + 감가상각) &times; 배수로 산정합니다. 수익성이 입증된 회사에 적합합니다.</div>
+    <div class="q-example">예: EBITDA 30억 &times; 15배 = 기업가치 450억</div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-num">METHOD 03</div>
+    <div class="q-main">비교법 (Comparable)</div>
+    <div class="q-sub">같은 업종의 상장사 시가총액과 재무지표를 비교하여 유사한 수준으로 산정합니다.</div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-num">METHOD 04</div>
+    <div class="q-main">협상</div>
+    <div class="q-sub">결국 투자자와 대표가 합의하는 가격입니다. 시장 상황, 경쟁 투자자 유무, 기술의 희소성 등이 최종 가격에 영향을 줍니다.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ CHAPTER 04 ═══════════════════════ -->
+<div class="section-dark">
+  <div class="section-label">Chapter 04</div>
+  <h2>IPO와 경영권</h2>
+
+  <!-- 4.1 -->
+  <h3>4.1 IPO란?</h3>
+  <p style="font-size:17px; font-weight:500; color:#6ea8fe; margin-bottom:20px;">
+    "피자를 대중에게 파는 것"
+  </p>
+
+  <div class="card-dark" style="border-left:4px solid var(--accent);">
+    <div class="card-body" style="font-size:15px; line-height:2;">
+      <strong style="color:#fff;">IPO = Initial Public Offering = 기업공개</strong><br>
+      불특정 다수의 대중에게 주식을 공개적으로 판매하는 것입니다.<br>
+      회사가 <strong style="color:#6ea8fe;">'나의 것'</strong>에서 <strong style="color:#6ea8fe;">'우리(사회)의 것'</strong>이 되는 선언입니다.
+    </div>
+  </div>
+
+  <!-- 4.2 -->
+  <h3>4.2 왜 "상장 후 51%"는 비현실적인가?</h3>
+
+  <div class="numbered-card">
+    <div class="nc-num">1</div>
+    <div class="nc-content">
+      <div class="nc-title">성장의 한계</div>
+      <div class="nc-body">외부 투자 없이 자기 돈으로만 성장하면 2년 내 300억 매출 달성이 불가능합니다. 생산설비, R&amp;D, 해외인증, 마케팅 모두 대규모 자금이 필요합니다.</div>
+    </div>
+  </div>
+
+  <div class="numbered-card">
+    <div class="nc-num">2</div>
+    <div class="nc-content">
+      <div class="nc-title">상장 심사 탈락</div>
+      <div class="nc-body">한국거래소는 <strong style="color:#fff;">주식 분산</strong>을 요구합니다. 소액주주 수와 유통 가능 주식 비율이 기준 미달이면 상장 심사에서 거부됩니다. 대주주 지분이 너무 높으면 불리합니다.</div>
+    </div>
+  </div>
+
+  <div class="numbered-card">
+    <div class="nc-num">3</div>
+    <div class="nc-content">
+      <div class="nc-title">투자자의 외면</div>
+      <div class="nc-body">투자자가 들어올 틈(조각)이 없으면 자금 유치 자체가 실패합니다. 누구도 "지분 줄 수 없는 회사"에 투자하지 않습니다.</div>
+    </div>
+  </div>
+
+  <!-- 4.3 -->
+  <h3>4.3 경영권 방어의 '마법 숫자'</h3>
+
+  <table class="data-table-dark">
+    <thead>
+      <tr>
+        <th style="width:15%;">지분율</th>
+        <th style="width:25%;">의미</th>
+        <th>할 수 있는 것</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight:700; color:#6ea8fe; font-size:16px;">67% 이상</td>
+        <td style="color:#fff;">특별결의 단독 가결</td>
+        <td>정관 변경, 합병, 분할, 해산 등 중대 사항 단독 결정</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:#6ea8fe; font-size:16px;">51% 이상</td>
+        <td style="color:#fff;">보통결의 단독 가결</td>
+        <td>이사 선임, 배당 결정, 일반 경영 사항</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:#6ea8fe; font-size:16px;">33.4% 이상</td>
+        <td style="color:#fff;">특별결의 거부권</td>
+        <td>중대 사항에 대한 거부권(비토권) &mdash; 방어의 최소 마지노선</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:#aaa; font-size:16px;">25% 이상</td>
+        <td style="color:#ccc;">이사 선임 영향력</td>
+        <td>집중투표 시 1명 이상 이사 확보 가능</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:#aaa; font-size:16px;">15% 이상</td>
+        <td style="color:#ccc;">주요주주</td>
+        <td>대량보유보고 의무, 주총 안건 제안권</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 4.4 -->
+  <h3>4.4 우호지분으로 경영권 방어</h3>
+
+  <p>현재 지분 구조에서 경영권이 얼마나 안정적인지 확인합니다.</p>
+
+  <!-- Stacked Bar -->
+  <div class="stacked-bar-container" style="margin:30px 0;">
+    <div class="stacked-bar-label" style="color:#999;">A사 지분 구조 (2차 투자 후)</div>
+    <div class="stacked-bar">
+      <div class="stacked-segment" style="width:59.2%; background:var(--ceo-blue);"><span>CEO 59.2%</span></div>
+      <div class="stacked-segment" style="width:6.5%; background:var(--exec-green);"><span style="font-size:10px;">임원</span></div>
+      <div class="stacked-segment" style="width:17.1%; background:var(--vc1-orange);"><span style="font-size:11px;">1차 VC</span></div>
+      <div class="stacked-segment" style="width:16.2%; background:var(--vc2-purple);"><span style="font-size:11px;">2차 VC</span></div>
+    </div>
+
+    <div class="stacked-bar-label" style="color:#999; margin-top:20px;">우호지분 합산</div>
+    <div class="stacked-bar">
+      <div class="stacked-segment" style="width:64.9%; background:linear-gradient(90deg, var(--ceo-blue) 91%, var(--exec-green) 91%);"><span>CEO + 임원 = 65.7%</span></div>
+      <div class="stacked-segment" style="width:35.1%; background:#333;"><span style="color:#999;">VC 33.3%</span></div>
+    </div>
+  </div>
+
+  <div class="highlight-dark">
+    <h4>A사 경영권 분석 (참고 사례)</h4>
+    <ul>
+      <li>A사 CEO 59.2% + 임원 합계 6.5% = <strong style="color:#fff;">우호지분 65.7%</strong></li>
+      <li>67%(특별결의 단독 가결)에는 못 미치지만, <strong style="color:#70AD47;">51%(보통결의)는 안정적 확보</strong></li>
+      <li>특별결의 거부권(33.4%)은 <strong style="color:#70AD47;">CEO 단독으로도 확보</strong></li>
+      <li style="color:#888; font-size:13px;">※ JJ MEDITEC이 향후 투자를 받을 때 이와 유사한 구조를 참고할 수 있습니다.</li>
+    </ul>
+  </div>
+
+  <!-- 4.5 -->
+  <h3>4.5 IPO까지의 현실적 로드맵</h3>
+
+  <div class="ipo-timeline">
+    <div class="ipo-step">
+      <div class="ipo-dot" style="background:var(--ceo-blue); border-color:var(--ceo-blue);">Now</div>
+      <div class="ipo-step-content">
+        <div class="ipo-step-label">현재</div>
+        <div class="ipo-step-title">자본금 100만원, CEO 100% (200주)</div>
+        <div class="ipo-step-detail">자본금 증자 필수 &mdash; 정부 지원금 요건(5,000만원) 충족 및 투자 유치 기반 마련</div>
+      </div>
+    </div>
+
+    <div class="ipo-step">
+      <div class="ipo-dot" style="background:var(--accent); border-color:#6ea8fe;">A</div>
+      <div class="ipo-step-content">
+        <div class="ipo-step-label">Series A (Seed)</div>
+        <div class="ipo-step-title">5~30억 유치, CEO 70~80%</div>
+        <div class="ipo-step-detail">첫 기관 투자자 확보 &mdash; 제품 고도화 및 초기 매출 성장에 집중</div>
+      </div>
+    </div>
+
+    <div class="ipo-step">
+      <div class="ipo-dot" style="background:var(--vc1-orange); border-color:var(--vc1-orange);">B</div>
+      <div class="ipo-step-content">
+        <div class="ipo-step-label">Series B</div>
+        <div class="ipo-step-title">50~100억 유치, CEO 50~60%</div>
+        <div class="ipo-step-detail">매출 확대기 &mdash; 해외 시장 진출, 양산 체계 구축</div>
+      </div>
+    </div>
+
+    <div class="ipo-step">
+      <div class="ipo-dot" style="background:var(--vc2-purple); border-color:var(--vc2-purple);">P</div>
+      <div class="ipo-step-content">
+        <div class="ipo-step-label">Pre-IPO</div>
+        <div class="ipo-step-title">200~500억 유치, CEO 30~40%</div>
+        <div class="ipo-step-detail">상장 준비 &mdash; 감사 체계 정비, IR 활동, 주관사 선정</div>
+      </div>
+    </div>
+
+    <div class="ipo-step">
+      <div class="ipo-dot" style="background:var(--exec-green); border-color:var(--exec-green);">IPO</div>
+      <div class="ipo-step-content">
+        <div class="ipo-step-label">IPO</div>
+        <div class="ipo-step-title">공모 20~30%, CEO 25~35%</div>
+        <div class="ipo-step-detail">코스닥 상장 &mdash; 대중 투자자에게 주식 공개 판매</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout-tip dark">
+    <div class="callout-icon">&#9432;</div>
+    <div>"대부분의 성공한 창업자는 IPO 시점에 <strong>30% 내외</strong>를 보유합니다."<br>
+    네이버 이해진(4.5%), 카카오 김범수(10.9%), 쿠팡 김범석(10.2%) &mdash; 비율은 작아도 수조 원의 가치입니다.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ CHAPTER 05 ═══════════════════════ -->
+<div class="section">
+  <div class="section-label">Chapter 05</div>
+  <h2>JJ MEDITEC 맞춤 제안</h2>
+
+  <!-- 5.1 -->
+  <h3>5.1 당장 해야 할 것: 자본금 증자</h3>
+
+  <div class="highlight-box">
+    <h4>현황 및 과제</h4>
+    <ul>
+      <li><strong>현재:</strong> 자본금 <span style="color:#c0392b; font-weight:700;">100만원</span> (1주 5,000원 × 200주, CEO 100%)</li>
+      <li><strong>문제:</strong> 정부 지원금 요건(자본금 5,000만원) <strong style="color:#c0392b;">미달</strong>. 투자 유치 시 신뢰도 부족</li>
+      <li><strong>방법:</strong> CEO가 추가 납입 (유상증자) 또는 이익잉여금 자본전입</li>
+      <li><strong>목표:</strong> 최소 <strong>5,000만원 이상</strong> — 정부사업 참여 + 투자 유치 기반 마련</li>
+    </ul>
+  </div>
+
+  <!-- 5.2 -->
+  <h3>5.2 보통주 vs 우선주 전략</h3>
+  <p>투자자에게 <strong>우선주</strong>를 발행해야 하는 이유:</p>
+
+  <div class="grid-3">
+    <div class="card" style="border-top:4px solid var(--vc1-orange);">
+      <div class="card-title" style="color:#c07830;">투자자 입장</div>
+      <div class="card-body">
+        <strong>회수 안전장치</strong><br>
+        청산 시 보통주보다 우선 배분받을 수 있어 투자 리스크가 줄어듭니다.
+      </div>
+    </div>
+    <div class="card" style="border-top:4px solid var(--ceo-blue);">
+      <div class="card-title" style="color:var(--ceo-blue);">CEO 입장</div>
+      <div class="card-body">
+        <strong>의결권 방어</strong><br>
+        우선주는 의결권이 없으므로, 보통주를 가진 CEO의 경영권이 보호됩니다.
+      </div>
+    </div>
+    <div class="card" style="border-top:4px solid var(--vc2-purple);">
+      <div class="card-title" style="color:var(--vc2-purple);">실무 표준</div>
+      <div class="card-body">
+        <strong>RCPS가 한국 VC 표준</strong><br>
+        상환전환우선주(RCPS)가 한국 벤처투자의 사실상 표준입니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.3 -->
+  <h3>5.3 스톡옵션: 지분 없이 인재 확보</h3>
+
+  <div class="q-block">
+    <div class="q-num">STOCK OPTION</div>
+    <div class="q-main">미래에 정해진 가격으로 주식을 살 권리</div>
+    <div class="q-sub">
+      핵심 임원에게 지분을 바로 주는 것이 아니라, 회사가 성장하면 그때 이익을 공유하는 방식입니다.<br>
+      임원은 회사가 성장할수록 더 큰 보상을 받게 되므로 강력한 동기부여가 됩니다.
+    </div>
+    <div class="q-example">
+      투자 유치 시 스톡옵션풀(총 주식의 3~10%)을 사전 설정하는 것이 일반적입니다.
+    </div>
+  </div>
+
+  <!-- 5.4 -->
+  <h3>5.4 주주간 계약서(SHA) 핵심 조항</h3>
+
+  <div class="q-block">
+    <div class="q-num">조항 01</div>
+    <div class="q-main">동반매도권 (Tag-along)</div>
+    <div class="q-sub">대주주가 지분을 팔 때 소수주주도 같은 조건으로 같이 팔 수 있는 권리입니다. 소수주주 보호 장치입니다.</div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-num">조항 02</div>
+    <div class="q-main">우선매수권 (ROFR: Right of First Refusal)</div>
+    <div class="q-sub">주주가 지분을 외부에 팔기 전에 기존 주주에게 먼저 매수 기회를 제안해야 하는 의무입니다.</div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-num">조항 03</div>
+    <div class="q-main">반희석 조항 (Anti-dilution)</div>
+    <div class="q-sub">다운라운드(이전보다 낮은 가치로 투자 유치) 시 기존 투자자의 지분율을 보호하는 장치입니다. 가장 흔한 방식은 가중평균(Weighted Average)입니다.</div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-num">조항 04</div>
+    <div class="q-main">이사회 구성</div>
+    <div class="q-sub">투자자가 이사 1명을 파견하는 것이 일반적입니다. 보통 이사회 5인 중 1인 수준으로, 경영 감시 역할을 합니다.</div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-num">조항 05</div>
+    <div class="q-main">정보권 (Information Right)</div>
+    <div class="q-sub">투자자에게 분기별 재무제표를 제공할 의무입니다. 투명한 경영의 기본이며, 신뢰 관계의 토대입니다.</div>
+  </div>
+
+  <!-- 5.5 -->
+  <h3>5.5 권장 지분 설계 로드맵</h3>
+
+  <table class="table-light">
+    <thead>
+      <tr>
+        <th>단계</th>
+        <th>시기</th>
+        <th style="text-align:center;">CEO 목표</th>
+        <th style="text-align:center;">우호지분</th>
+        <th style="text-align:center;">VC / 공모</th>
+        <th>핵심 이벤트</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight:700; color:var(--ceo-blue);">현재</td>
+        <td>2026</td>
+        <td style="text-align:center; font-weight:700;">100%</td>
+        <td style="text-align:center;">-</td>
+        <td style="text-align:center;">-</td>
+        <td>자본금 증자</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--accent);">Seed / Series A</td>
+        <td>2026~27</td>
+        <td style="text-align:center; font-weight:700;">65~75%</td>
+        <td style="text-align:center;">5~8%</td>
+        <td style="text-align:center;">20~25%</td>
+        <td>첫 VC 유치, 유럽 매출 본격화</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--vc1-orange);">Series B</td>
+        <td>2027~28</td>
+        <td style="text-align:center; font-weight:700;">50~60%</td>
+        <td style="text-align:center;">5~8%</td>
+        <td style="text-align:center;">30~40%</td>
+        <td>300억 매출, 자체 브랜드 확장</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--vc2-purple);">Pre-IPO</td>
+        <td>2028~29</td>
+        <td style="text-align:center; font-weight:700;">35~45%</td>
+        <td style="text-align:center;">5%</td>
+        <td style="text-align:center;">50~60%</td>
+        <td>상장 준비, 감사 체계 정비</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:var(--exec-green);">IPO</td>
+        <td>2029~30</td>
+        <td style="text-align:center; font-weight:700;">25~35%</td>
+        <td style="text-align:center;">3~5%</td>
+        <td style="text-align:center;">60~70%</td>
+        <td>코스닥 상장</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout-tip light">
+    <div class="callout-icon">&#9432;</div>
+    <div>이 로드맵은 일반적인 한국 스타트업의 성장 경로를 기반으로 한 <strong>권장안</strong>입니다. 실제 투자 조건과 시장 상황에 따라 유연하게 조정해야 합니다.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<div class="footer">
+  <div class="footer-brand">MOSLAB</div>
+  <p>본 자료는 JJ MEDITEC을 위해 작성된 비밀유지 대상 컨설팅 자료입니다.</p>
+  <p>무단 복제 및 배포를 금지합니다.</p>
+  <p style="margin-top:12px; color:#444;">2026.03 / v1.0</p>
+  <div class="footer-conf">CONFIDENTIAL</div>
+</div>
+
+</body>
+</html>

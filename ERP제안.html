@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERP 도입 제안 — JJ MEDITEC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --seller-blue: #4472C4;
+    --buyer-orange: #F4B084;
+    --included-green: #E2EFDA;
+    --excluded-gray: #D6DCE4;
+    --navy: #1B3A5C;
+    --highlight-yellow: #FFF2CC;
+    --dark-bg: #111;
+    --light-bg: #fafafa;
+    --text-dark: #1a1a1a;
+    --text-light: #f5f5f5;
+    --accent: #4472C4;
+    --border-light: #e0e0e0;
+    --border-dark: #333;
+    --module-sales: #4472C4;
+    --module-purchase: #F4B084;
+    --module-logistics: #70AD47;
+    --module-accounting: #9B59B6;
+    --module-dashboard: #1B3A5C;
+    --warning-red: #E74C3C;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-dark);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Noto Serif KR', serif;
+    line-height: 1.35;
+  }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    background: var(--light-bg);
+    color: var(--text-dark);
+    padding: 60px 80px;
+    min-height: 100vh;
+  }
+  .section-dark {
+    background: var(--dark-bg);
+    color: var(--text-light);
+    padding: 60px 80px;
+    min-height: 100vh;
+  }
+
+  .section-label {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .section-dark .section-label {
+    color: #6ea8fe;
+  }
+
+  .section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 36px;
+    color: var(--text-dark);
+  }
+  .section-dark h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 36px;
+    color: #fff;
+  }
+
+  h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 40px 0 16px;
+  }
+  .section-dark h3 { color: #e8e8e8; }
+
+  h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 24px 0 10px;
+    color: var(--navy);
+  }
+  .section-dark h4 { color: #a0c4ff; }
+
+  p { margin-bottom: 14px; }
+  .section-dark p { color: #ccc; }
+
+  /* ─── COVER ─── */
+  .cover {
+    background: var(--dark-bg);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px;
+    position: relative;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 30% 40%, rgba(68,114,196,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 70%, rgba(244,176,132,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .cover-badge {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover h1 {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, #fff 0%, #a0c4ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cover-subtitle {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #999;
+    margin-bottom: 60px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    font-size: 13px;
+    color: #666;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 50px;
+  }
+  .cover-meta span { display: flex; flex-direction: column; gap: 4px; }
+  .cover-meta .label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; }
+  .cover-meta .value { color: #aaa; font-weight: 500; }
+  .cover-quote {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: #555;
+    max-width: 500px;
+    position: relative;
+    z-index: 1;
+    border-left: 2px solid var(--accent);
+    padding-left: 20px;
+    text-align: left;
+  }
+
+  /* ─── TABLES ─── */
+  .table-light {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  .table-light th {
+    background: var(--navy);
+    color: #fff;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .table-light td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+  }
+  .table-light tr:nth-child(even) { background: #f0f2f5; }
+
+  .data-table-dark {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  .data-table-dark th {
+    background: rgba(68,114,196,0.3);
+    color: #a0c4ff;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .data-table-dark td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #222;
+    color: #ccc;
+    vertical-align: top;
+  }
+  .data-table-dark tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+
+  /* ─── CARDS ─── */
+  .card {
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .card-body { font-size: 14px; color: #555; line-height: 1.8; }
+
+  .card-dark {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card-dark .card-title { color: #fff; }
+  .card-dark .card-body { color: #aaa; }
+
+  /* ─── Q-BLOCKS ─── */
+  .q-block {
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+  }
+  .section-dark .q-block {
+    background: rgba(255,255,255,0.04);
+    border-color: #2a2a2a;
+    border-left-color: var(--accent);
+  }
+  .q-num {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .q-main {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+  }
+  .section-dark .q-main { color: #fff; }
+  .q-sub {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+  }
+  .section-dark .q-sub { color: #999; }
+
+  /* ─── GRIDS ─── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin: 24px 0; }
+
+  /* ─── HIGHLIGHT BOX ─── */
+  .highlight-box {
+    background: #f0f7ff;
+    border: 1px solid #c8ddf5;
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+  .highlight-box h4 { color: var(--navy); margin-top: 0; }
+  .highlight-box ul { padding-left: 20px; }
+  .highlight-box li { margin-bottom: 8px; font-size: 14px; color: #333; }
+
+  .highlight-dark {
+    background: rgba(68,114,196,0.08);
+    border: 1px solid rgba(68,114,196,0.2);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+  .highlight-dark h4 { color: #6ea8fe; margin-top: 0; }
+  .highlight-dark ul { padding-left: 20px; }
+  .highlight-dark li { margin-bottom: 8px; font-size: 14px; color: #bbb; }
+
+  /* ─── NUMBERED LIST ─── */
+  .num-list { counter-reset: numlist; list-style: none; padding: 0; }
+  .num-list li {
+    counter-increment: numlist;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .num-list li::before {
+    content: counter(numlist);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* ─── STEP VISUAL (Timeline) ─── */
+  .step-container { margin: 30px 0; }
+  .step-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 0;
+    position: relative;
+  }
+  .step-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 50px;
+  }
+  .step-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+  .step-vline {
+    width: 2px;
+    flex: 1;
+    background: #333;
+    min-height: 20px;
+  }
+  .section .step-vline { background: #ddd; }
+  .step-content {
+    padding-bottom: 28px;
+    flex: 1;
+  }
+  .step-date {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .step-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .section-dark .step-title { color: #fff; }
+  .step-detail {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.8;
+  }
+
+  /* ─── CALLOUT TIP ─── */
+  .callout-tip {
+    display: flex;
+    gap: 16px;
+    padding: 18px 22px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .callout-tip.light {
+    background: #fffbe6;
+    border: 1px solid #f0e4a0;
+    color: #6b5900;
+  }
+  .callout-tip.dark {
+    background: rgba(255,242,204,0.06);
+    border: 1px solid rgba(255,242,204,0.15);
+    color: #e8d88c;
+  }
+  .callout-icon { font-size: 20px; flex-shrink: 0; line-height: 1.6; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--dark-bg);
+    color: #555;
+    padding: 40px 80px;
+    text-align: center;
+    font-size: 12px;
+    border-top: 1px solid #222;
+  }
+  .footer-brand {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #888;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+  }
+  .footer-conf {
+    color: #ff6b6b;
+    font-weight: 600;
+    margin-top: 12px;
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  /* ═══════════════════════════════════════════
+     ERP PROPOSAL — CUSTOM ADDITIONS
+     ═══════════════════════════════════════════ */
+
+  /* ─── AS-IS FLOW DIAGRAM ─── */
+  .asis-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0;
+    margin: 30px 0;
+    padding: 20px 0;
+  }
+  .asis-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 110px;
+    flex: 1;
+  }
+  .asis-box {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 14px 10px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #e0e0e0;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .asis-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 14px;
+    min-width: 30px;
+    color: #555;
+    font-size: 18px;
+    align-self: flex-start;
+    margin-top: 12px;
+  }
+  .asis-problem {
+    margin-top: 10px;
+    font-size: 11px;
+    color: var(--warning-red);
+    text-align: center;
+    padding: 6px 8px;
+    background: rgba(231,76,60,0.1);
+    border-radius: 6px;
+    border: 1px solid rgba(231,76,60,0.2);
+    line-height: 1.4;
+    width: 100%;
+  }
+
+  /* ─── TO-BE FLOW DIAGRAM ─── */
+  .tobe-flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 30px 0;
+    align-items: stretch;
+  }
+  .tobe-module {
+    flex: 1;
+    min-width: 160px;
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .tobe-module-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+  }
+  .tobe-module-items {
+    list-style: none;
+    padding: 0;
+    font-size: 12px;
+    line-height: 2;
+    text-align: left;
+  }
+  .tobe-module-items li {
+    padding-left: 14px;
+    position: relative;
+  }
+  .tobe-module-items li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+    opacity: 0.6;
+  }
+  .tobe-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    font-size: 20px;
+    color: #555;
+  }
+
+  .mod-sales { background: rgba(68,114,196,0.15); border: 1px solid rgba(68,114,196,0.3); color: #a0c4ff; }
+  .mod-sales .tobe-module-title { color: #6ea8fe; }
+  .mod-purchase { background: rgba(244,176,132,0.12); border: 1px solid rgba(244,176,132,0.25); color: #f4c89c; }
+  .mod-purchase .tobe-module-title { color: var(--buyer-orange); }
+  .mod-logistics { background: rgba(112,173,71,0.12); border: 1px solid rgba(112,173,71,0.25); color: #a8d88c; }
+  .mod-logistics .tobe-module-title { color: var(--module-logistics); }
+  .mod-accounting { background: rgba(155,89,182,0.12); border: 1px solid rgba(155,89,182,0.25); color: #c89ef0; }
+  .mod-accounting .tobe-module-title { color: #bb86fc; }
+  .mod-dashboard { background: rgba(27,58,92,0.3); border: 1px solid rgba(68,114,196,0.4); color: #a0c4ff; }
+  .mod-dashboard .tobe-module-title { color: #6ea8fe; }
+
+  /* ─── ERP RECOMMENDATION CARDS ─── */
+  .erp-card {
+    border-radius: 14px;
+    padding: 32px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .erp-card-primary {
+    background: #fff;
+    border: 2px solid var(--accent);
+    box-shadow: 0 4px 20px rgba(68,114,196,0.12);
+  }
+  .erp-card-secondary {
+    background: #fff;
+    border: 1px solid var(--border-light);
+  }
+  .erp-card-accent {
+    background: #fff;
+    border: 1px solid var(--module-logistics);
+  }
+  .erp-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .badge-recommend { background: var(--accent); color: #fff; }
+  .badge-future { background: var(--navy); color: #fff; }
+  .badge-support { background: var(--module-logistics); color: #fff; }
+  .erp-card h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+  .erp-price {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .erp-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #777;
+  }
+  .erp-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .erp-meta-label {
+    font-weight: 600;
+    color: #555;
+  }
+  .erp-fit {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin: 16px 0;
+    font-weight: 600;
+  }
+  .fit-high { background: rgba(68,114,196,0.08); color: var(--accent); border: 1px solid rgba(68,114,196,0.15); }
+  .fit-medium { background: rgba(244,176,132,0.1); color: #8B5E3C; border: 1px solid rgba(244,176,132,0.2); }
+  .fit-support { background: rgba(112,173,71,0.08); color: #3a7d1e; border: 1px solid rgba(112,173,71,0.15); }
+  .star-rating { color: var(--buyer-orange); font-size: 16px; letter-spacing: 2px; }
+  .star-empty { color: #ddd; }
+
+  .erp-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 20px;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .erp-features li {
+    list-style: none;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.8;
+  }
+  .erp-features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .erp-card-secondary .erp-features li::before { background: var(--navy); }
+  .erp-card-accent .erp-features li::before { background: var(--module-logistics); }
+
+  .erp-limits {
+    margin-top: 16px;
+    padding: 14px 18px;
+    background: #fff8f0;
+    border: 1px solid #f0e4d0;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #8B5E3C;
+    line-height: 1.8;
+  }
+  .erp-limits strong { display: block; margin-bottom: 4px; }
+
+  /* ─── COMPARISON TABLE (ENHANCED) ─── */
+  .compare-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 24px 0;
+    font-size: 13px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+  }
+  .compare-table th {
+    padding: 14px 16px;
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+  }
+  .compare-table th:first-child { text-align: left; min-width: 120px; }
+  .compare-table th.col-recommend { background: var(--accent); color: #fff; }
+  .compare-table th.col-future { background: var(--navy); color: #fff; }
+  .compare-table th.col-support { background: var(--module-logistics); color: #fff; }
+  .compare-table th.col-label { background: #f0f2f5; color: var(--navy); }
+  .compare-table td {
+    padding: 11px 16px;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+  }
+  .compare-table td:first-child {
+    text-align: left;
+    font-weight: 600;
+    color: var(--navy);
+    background: #fafafa;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { background: rgba(68,114,196,0.03); }
+  .compare-table tr:hover td:first-child { background: rgba(68,114,196,0.06); }
+
+  /* ─── PHASE BOX ─── */
+  .phase-box {
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .phase-box-dark {
+    background: rgba(68,114,196,0.1);
+    border: 1px solid rgba(68,114,196,0.25);
+  }
+  .phase-box-dark h4 { color: #6ea8fe; margin-top: 0; }
+  .phase-box-dark p { color: #bbb; }
+  .phase-box-dark ul { padding-left: 20px; }
+  .phase-box-dark li { color: #ccc; margin-bottom: 6px; font-size: 14px; }
+
+  .phase-secondary {
+    background: rgba(155,89,182,0.08);
+    border: 1px solid rgba(155,89,182,0.2);
+  }
+  .phase-secondary h4 { color: #bb86fc; margin-top: 0; }
+  .phase-secondary li { color: #ccc; margin-bottom: 6px; font-size: 14px; }
+
+  /* ─── COST SUMMARY ─── */
+  .cost-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .cost-item {
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .cost-item-dark {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid #2a2a2a;
+  }
+  .cost-label { font-size: 12px; color: #888; margin-bottom: 6px; }
+  .cost-value { font-size: 22px; font-weight: 800; color: var(--accent); }
+  .section-dark .cost-value { color: #6ea8fe; }
+  .cost-note { font-size: 11px; color: #666; margin-top: 4px; }
+
+  /* ─── CHECKLIST ─── */
+  .checklist {
+    list-style: none;
+    padding: 0;
+    counter-reset: checklist;
+  }
+  .checklist li {
+    counter-increment: checklist;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid #222;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .checklist li::before {
+    content: counter(checklist);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .section-dark .checklist li { color: #ddd; }
+
+  /* ─── PRINT ─── */
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 12mm 10mm 14mm 10mm;
+    }
+    body { font-size: 11pt; }
+    .cover, .section, .section-dark {
+      min-height: auto;
+      padding: 30px 20px;
+      page-break-after: always;
+    }
+    .footer { page-break-after: avoid; }
+    table { page-break-inside: avoid; }
+    .q-block, .card, .card-dark, .highlight-box, .highlight-dark,
+    .erp-card, .phase-box { page-break-inside: avoid; }
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    .section-dark, .cover, .footer {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ COVER PAGE ═══════════════════════ -->
+<div class="cover">
+  <div class="cover-badge">MOSLAB Consulting Deliverable</div>
+  <h1>ERP 도입 제안</h1>
+  <p class="cover-subtitle">JJ MEDITEC 수출 업무 효율화를 위한 시스템 구축 가이드</p>
+  <div class="cover-meta">
+    <span>
+      <span class="label">Client</span>
+      <span class="value">JJ MEDITEC</span>
+    </span>
+    <span>
+      <span class="label">Prepared by</span>
+      <span class="value">MOSLAB</span>
+    </span>
+    <span>
+      <span class="label">Date</span>
+      <span class="value">2026.03</span>
+    </span>
+    <span>
+      <span class="label">Version</span>
+      <span class="value">v1.0</span>
+    </span>
+  </div>
+  <div class="cover-quote">
+    "시스템이 없으면 사람이 시스템이 됩니다.<br>
+    사람에 의존하는 경영은 확장할 수 없습니다."
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ CHAPTER 01 ═══════════════════════ -->
+<div class="section">
+  <div class="section-label">Chapter 01</div>
+  <h2>ERP가 왜 필요한가?</h2>
+
+  <!-- 1.1 현재 상태의 문제점 -->
+  <h3>1.1 현재 상태의 문제점</h3>
+  <p>JJ MEDITEC의 현재 업무 환경은 엑셀과 수작업에 전적으로 의존하고 있습니다. 10명 규모에서는 버틸 수 있지만, 수출 확대와 원격 경영 체제 전환 시 반드시 한계에 부딪힙니다.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">데이터 분산</div>
+      <div class="card-body">
+        매출은 엑셀A, 재고는 엑셀B, 회계는 엑셀C에 각각 관리됩니다.<br>
+        숫자 불일치가 빈번하고, 하나를 수정해도 다른 파일에 전파되지 않아 데이터 신뢰성이 떨어집니다.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">수작업 리스크</div>
+      <div class="card-body">
+        수출 서류(Invoice, Packing List)를 매번 수동 작성합니다.<br>
+        오타, 누락이 발생하면 세관 반려, 바이어 클레임으로 이어질 수 있습니다.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">실시간 현황 파악 불가</div>
+      <div class="card-body">
+        "지금 재고 몇 개?", "이번 달 마진율?" — 이런 질문에 즉답이 불가능합니다.<br>
+        파일을 뒤져서 계산해야 하며, 계산 결과도 시점에 따라 다릅니다.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">원격 경영 불가</div>
+      <div class="card-body">
+        CEO 말레이시아 2년 체류 예정이나, 엑셀 파일 기반으로는 실시간 공유가 어렵습니다.<br>
+        의사결정 지연이 불가피하고, 현장 상황 파악에 시차가 발생합니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- 1.2 ERP 도입 시 기대 효과 -->
+  <h3>1.2 ERP 도입 시 기대 효과</h3>
+
+  <div class="q-block">
+    <div class="q-num">BENEFIT 01</div>
+    <div class="q-main">단일 데이터 소스 (Single Source of Truth)</div>
+    <div class="q-sub">한 번 입력하면 회계, 재고, 매출에 동시 반영됩니다. 더 이상 여러 엑셀 파일을 동기화할 필요가 없습니다.</div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-num">BENEFIT 02</div>
+    <div class="q-main">실시간 경영 대시보드</div>
+    <div class="q-sub">어디서든 웹/모바일로 매출, 원가, 재고, 마진을 즉시 확인할 수 있습니다. CEO가 말레이시아에서도 경영 현황을 실시간으로 모니터링합니다.</div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-num">BENEFIT 03</div>
+    <div class="q-main">수출 업무 자동화</div>
+    <div class="q-sub">주문 접수부터 출고, 선적, 매출 인식, 대금 수령까지 하나의 흐름으로 일관 처리됩니다. 수작업 실수를 원천 차단합니다.</div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-num">BENEFIT 04</div>
+    <div class="q-main">감사 대비</div>
+    <div class="q-sub">모든 거래 이력이 자동 보관되며, 회계 감사 시 증빙 자료를 즉시 추출할 수 있습니다. 감사 수감 준비 시간을 획기적으로 단축합니다.</div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-num">BENEFIT 05</div>
+    <div class="q-main">원격 경영 지원</div>
+    <div class="q-sub">웹/모바일 접속으로 CEO가 해외에서도 승인, 조회, 의사결정이 가능합니다. 물리적 거리가 경영의 장애가 되지 않습니다.</div>
+  </div>
+
+  <!-- 1.3 JJ MEDITEC 특수 요구사항 -->
+  <h3>1.3 JJ MEDITEC 특수 요구사항</h3>
+
+  <div class="highlight-box">
+    <h4>JJ MEDITEC ERP 도입 시 반드시 충족해야 할 요건</h4>
+    <ul>
+      <li><strong>외화 거래 관리</strong> — EUR/USD/KRW 복수 통화 거래를 지원하고, 환율 자동 적용 및 환차손익을 추적해야 합니다</li>
+      <li><strong>수출 매출 인식</strong> — Incoterms별 위험 이전 시점(B/L 기준 등)에 따라 정확한 매출 인식이 필요합니다</li>
+      <li><strong>제품별 원가 추적</strong> — 유통 제품과 자체 브랜드(Esthécor, Dalalé)의 원가 구조가 다르므로 별도 추적이 필수입니다</li>
+      <li><strong>재고 관리</strong> — 의료기기 유통기한 관리 및 로트(Lot) 추적이 가능해야 합니다</li>
+      <li><strong>FTA 원산지 관리</strong> — 유럽 수출 시 원산지증명서 관리가 필수이며, FTA 혜택 활용을 위한 기록 보관이 필요합니다</li>
+      <li><strong>클라우드 필수</strong> — CEO 해외 체류 기간 중 원격 접속이 가능한 100% 클라우드 기반이어야 합니다</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ CHAPTER 02 ═══════════════════════ -->
+<div class="section-dark">
+  <div class="section-label">Chapter 02</div>
+  <h2>업무 처리 플로우</h2>
+
+  <!-- 2.1 현재 업무 흐름 (As-Is) -->
+  <h3>2.1 현재 업무 흐름 (As-Is)</h3>
+  <p>현재 JJ MEDITEC의 수출 업무는 다음과 같이 처리됩니다. 각 단계가 서로 연결되지 않은 개별 작업이며, 단계 사이에서 데이터 손실과 오류가 발생합니다.</p>
+
+  <div class="asis-flow">
+    <div class="asis-step">
+      <div class="asis-box">바이어 문의</div>
+    </div>
+    <div class="asis-arrow">&#9654;</div>
+    <div class="asis-step">
+      <div class="asis-box">견적서<br><small style="color:#888">(엑셀)</small></div>
+      <div class="asis-problem">매번 새로 작성<br>이전 가격 이력 없음</div>
+    </div>
+    <div class="asis-arrow">&#9654;</div>
+    <div class="asis-step">
+      <div class="asis-box">주문 확정<br><small style="color:#888">(이메일)</small></div>
+      <div class="asis-problem">이메일 검색해서 확인</div>
+    </div>
+    <div class="asis-arrow">&#9654;</div>
+    <div class="asis-step">
+      <div class="asis-box">공급사 발주<br><small style="color:#888">(전화/이메일)</small></div>
+      <div class="asis-problem">구두 발주<br>단가 기록 분산</div>
+    </div>
+    <div class="asis-arrow">&#9654;</div>
+    <div class="asis-step">
+      <div class="asis-box">입고 확인<br><small style="color:#888">(수기)</small></div>
+      <div class="asis-problem">재고 수량 불확실</div>
+    </div>
+  </div>
+
+  <div class="asis-flow">
+    <div class="asis-step">
+      <div class="asis-box">포장/라벨링</div>
+    </div>
+    <div class="asis-arrow">&#9654;</div>
+    <div class="asis-step">
+      <div class="asis-box">선적/B/L</div>
+      <div class="asis-problem">B/L 파일 폴더 관리</div>
+    </div>
+    <div class="asis-arrow">&#9654;</div>
+    <div class="asis-step">
+      <div class="asis-box">Invoice 작성<br><small style="color:#888">(엑셀)</small></div>
+      <div class="asis-problem">수동 환율 적용<br>오류 가능</div>
+    </div>
+    <div class="asis-arrow">&#9654;</div>
+    <div class="asis-step">
+      <div class="asis-box">매출 기록<br><small style="color:#888">(엑셀)</small></div>
+      <div class="asis-problem">매출 인식 시점 불명확</div>
+    </div>
+    <div class="asis-arrow">&#9654;</div>
+    <div class="asis-step">
+      <div class="asis-box">대금 수령<br><small style="color:#888">(은행)</small></div>
+      <div class="asis-problem">환차손익 미추적</div>
+    </div>
+    <div class="asis-arrow">&#9654;</div>
+    <div class="asis-step">
+      <div class="asis-box">회계 반영<br><small style="color:#888">(별도 엑셀)</small></div>
+      <div class="asis-problem">결산 때<br>한꺼번에 정리</div>
+    </div>
+  </div>
+
+  <div class="callout-tip dark">
+    <div class="callout-icon">&#9888;&#65039;</div>
+    <div>위 흐름에서 <strong>빨간색</strong>으로 표시된 부분이 현재 수작업 프로세스의 핵심 리스크입니다. 각 단계가 독립적으로 운영되어 데이터 정합성을 보장할 수 없으며, 실수 발생 시 역추적이 어렵습니다.</div>
+  </div>
+
+  <!-- 2.2 ERP 도입 후 (To-Be) -->
+  <h3>2.2 ERP 도입 후 (To-Be)</h3>
+  <p>ERP 도입 시 모든 업무가 하나의 시스템 안에서 연결됩니다. 각 모듈이 유기적으로 연동되어 한 번의 입력으로 전체 흐름이 자동 처리됩니다.</p>
+
+  <div class="tobe-flow">
+    <div class="tobe-module mod-sales">
+      <div class="tobe-module-title">영업 모듈</div>
+      <ul class="tobe-module-items">
+        <li>바이어 관리</li>
+        <li>견적서 자동 생성</li>
+        <li>수주 등록</li>
+      </ul>
+    </div>
+    <div class="tobe-connector">&#9654;</div>
+    <div class="tobe-module mod-purchase">
+      <div class="tobe-module-title">구매 모듈</div>
+      <ul class="tobe-module-items">
+        <li>공급사 발주</li>
+        <li>입고/검수</li>
+        <li>재고 자동 반영</li>
+      </ul>
+    </div>
+    <div class="tobe-connector">&#9654;</div>
+    <div class="tobe-module mod-logistics">
+      <div class="tobe-module-title">물류 모듈</div>
+      <ul class="tobe-module-items">
+        <li>출고 지시</li>
+        <li>포장 관리</li>
+        <li>선적 (B/L 연동)</li>
+      </ul>
+    </div>
+    <div class="tobe-connector">&#9654;</div>
+    <div class="tobe-module mod-accounting">
+      <div class="tobe-module-title">회계 모듈</div>
+      <ul class="tobe-module-items">
+        <li>매출 자동 인식</li>
+        <li>외화 매출채권</li>
+        <li>대금 수령</li>
+        <li>환차손익 자동 계산</li>
+      </ul>
+    </div>
+    <div class="tobe-connector">&#9654;</div>
+    <div class="tobe-module mod-dashboard">
+      <div class="tobe-module-title">경영 대시보드</div>
+      <ul class="tobe-module-items">
+        <li>실시간 매출 현황</li>
+        <li>원가/마진 분석</li>
+        <li>재고 현황</li>
+        <li>CEO 원격 모니터링</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2.3 핵심 업무별 Before vs After -->
+  <h3>2.3 핵심 업무별 Before vs After 비교</h3>
+
+  <table class="data-table-dark">
+    <thead>
+      <tr>
+        <th>업무</th>
+        <th>Before (수작업)</th>
+        <th>After (ERP)</th>
+        <th>효과</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight:600; color:#a0c4ff;">견적서 작성</td>
+        <td>엑셀 매번 새로 작성</td>
+        <td>이전 견적 복사, 자동 단가 적용</td>
+        <td style="color:var(--module-logistics); font-weight:600;">시간 80% 절감</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; color:#a0c4ff;">재고 확인</td>
+        <td>파일 열어서 계산</td>
+        <td>실시간 조회</td>
+        <td style="color:var(--module-logistics); font-weight:600;">즉시 확인</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; color:#a0c4ff;">매출 인식</td>
+        <td>결산 때 수동 집계</td>
+        <td>출고 시 자동 인식</td>
+        <td style="color:var(--module-logistics); font-weight:600;">기간 귀속 정확</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; color:#a0c4ff;">환차손익</td>
+        <td>추적 안 함</td>
+        <td>자동 계산</td>
+        <td style="color:var(--module-logistics); font-weight:600;">손익 가시성 확보</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; color:#a0c4ff;">원가 분석</td>
+        <td>제품별 분석 불가</td>
+        <td>제품별 자동 집계</td>
+        <td style="color:var(--module-logistics); font-weight:600;">마진 최적화</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; color:#a0c4ff;">세금 신고</td>
+        <td>수동 집계</td>
+        <td>자동 집계, 전자세금계산서</td>
+        <td style="color:var(--module-logistics); font-weight:600;">신고 오류 방지</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; color:#a0c4ff;">경영 현황</td>
+        <td>CEO에게 보고서 수동 작성</td>
+        <td>대시보드 실시간 조회</td>
+        <td style="color:var(--module-logistics); font-weight:600;">의사결정 속도 향상</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ═══════════════════════ CHAPTER 03 ═══════════════════════ -->
+<div class="section">
+  <div class="section-label">Chapter 03</div>
+  <h2>ERP 3종 비교 추천</h2>
+
+  <!-- 3.1 이카운트 ERP -->
+  <div class="erp-card erp-card-primary">
+    <div class="erp-badge badge-recommend">&#9733; 최우선 추천</div>
+    <h3 style="margin-top:4px;">3.1 이카운트 ERP</h3>
+    <div class="erp-price">월 4만원 정액 (사용자 수 무제한)</div>
+
+    <div class="erp-meta">
+      <div class="erp-meta-item"><span class="erp-meta-label">형태:</span> 100% 클라우드 (웹 + 모바일 앱)</div>
+      <div class="erp-meta-item"><span class="erp-meta-label">도입 기간:</span> 1~2주</div>
+      <div class="erp-meta-item"><span class="erp-meta-label">사용 기업:</span> 8만+ 기업, 90만+ 사용자</div>
+      <div class="erp-meta-item"><span class="erp-meta-label">보안:</span> ISO 27001, ISMS 인증, AWS 클라우드</div>
+    </div>
+
+    <h4 style="margin-top:16px;">핵심 기능</h4>
+    <ul class="erp-features">
+      <li><strong>회계:</strong> 복식부기, 부가세, 전자세금계산서, 법인세 기초</li>
+      <li><strong>영업:</strong> 견적 &rarr; 수주 &rarr; 출고 &rarr; 매출 일괄 처리</li>
+      <li><strong>구매:</strong> 발주 &rarr; 입고 &rarr; 매입 관리</li>
+      <li><strong>재고:</strong> 입출고, 수불부, 로트 관리, 창고별 관리</li>
+      <li><strong>원가:</strong> 제품별 원가 산정, 마진 분석</li>
+      <li><strong>외화:</strong> 복수 통화 거래, 환율 적용</li>
+      <li><strong>인사:</strong> 급여, 퇴직금, 4대보험 (10명 규모에 적합)</li>
+    </ul>
+
+    <div class="erp-fit fit-high">
+      <span>JJ MEDITEC 적합도:</span>
+      <span class="star-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    </div>
+    <ul style="font-size:14px; padding-left:20px; margin-top:8px; color:#555; line-height:2;">
+      <li>월 4만원으로 전 기능 사용 — 10명 기업에 가장 합리적인 비용</li>
+      <li>클라우드 기반 — CEO 말레이시아에서도 웹/모바일 접속</li>
+      <li>즉시 도입 가능 — 별도 구축 불필요, 가입 후 바로 사용</li>
+    </ul>
+
+    <div class="erp-limits">
+      <strong>한계:</strong>
+      - 수출 전용 서류(B/L, Commercial Invoice) 자동 생성 미지원<br>
+      - 대규모 커스터마이징 한계<br>
+      - &rarr; <strong>트레드링스와 병행하여 보완</strong>
+    </div>
+  </div>
+
+  <!-- 3.2 더존 iCUBE -->
+  <div class="erp-card erp-card-secondary">
+    <div class="erp-badge badge-future">성장 후 전환 추천</div>
+    <h3 style="margin-top:4px;">3.2 더존 iCUBE</h3>
+    <div class="erp-price" style="color:var(--navy);">약 10~30만원/월 (모듈, 사용자 수에 따라)</div>
+
+    <div class="erp-meta">
+      <div class="erp-meta-item"><span class="erp-meta-label">형태:</span> 클라우드 + 구축형 선택</div>
+      <div class="erp-meta-item"><span class="erp-meta-label">도입 기간:</span> 2~4주 (컨설턴트 지원)</div>
+      <div class="erp-meta-item"><span class="erp-meta-label">시장 점유율:</span> 중소기업 ERP 1위 (89%)</div>
+    </div>
+
+    <h4 style="margin-top:16px;">핵심 강점</h4>
+    <ul class="erp-features">
+      <li>한국 세무/회계 기준 완벽 지원 — 세무사/회계사 연동 최고</li>
+      <li>수출 서류 &rarr; 무역 프로그램 자동 연동</li>
+      <li>경영진 리포팅(EIS) 대시보드</li>
+      <li>회계감사 수감 시 자료 추출 최적화</li>
+      <li>50~100명 규모까지 확장 가능</li>
+    </ul>
+
+    <div class="erp-fit fit-medium">
+      <span>JJ MEDITEC 적합도 (현재):</span>
+      <span class="star-rating">&#9733;&#9733;&#9733;<span class="star-empty">&#9733;&#9733;</span></span>
+      <span style="margin-left:12px; font-size:13px; color:#888;">&rarr; 성장 후 &#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    </div>
+    <ul style="font-size:14px; padding-left:20px; margin-top:8px; color:#555; line-height:2;">
+      <li>현재 10명 규모에는 비용 과다</li>
+      <li>매출 50억+ 또는 투자 유치 후 전환 검토 권장</li>
+    </ul>
+  </div>
+
+  <!-- 3.3 트레드링스 -->
+  <div class="erp-card erp-card-accent">
+    <div class="erp-badge badge-support">수출 물류 특화 보조</div>
+    <h3 style="margin-top:4px;">3.3 트레드링스 (TradLinx)</h3>
+    <div class="erp-price" style="color:var(--module-logistics);">기본 무료 + 유료 플랜</div>
+
+    <div class="erp-meta">
+      <div class="erp-meta-item"><span class="erp-meta-label">형태:</span> 100% 클라우드 플랫폼</div>
+      <div class="erp-meta-item"><span class="erp-meta-label">사용 기업:</span> 40,000+ 수출입 기업</div>
+      <div class="erp-meta-item"><span class="erp-meta-label">레퍼런스:</span> 삼성, LG, 두산, 이랜드, LS</div>
+    </div>
+
+    <h4 style="margin-top:16px;">핵심 기능</h4>
+    <ul class="erp-features">
+      <li>B/L 추적 및 선박 스케줄 조회</li>
+      <li>국제 운임 비교</li>
+      <li>무역 서류 관리 (Invoice, Packing List, B/L)</li>
+      <li>FTA 원산지증명서 관리</li>
+      <li>수출입 물류 가시성</li>
+    </ul>
+
+    <div class="erp-fit fit-support">
+      <span>JJ MEDITEC 적합도 (보조 도구로):</span>
+      <span class="star-rating">&#9733;&#9733;&#9733;&#9733;<span class="star-empty">&#9733;</span></span>
+    </div>
+    <ul style="font-size:14px; padding-left:20px; margin-top:8px; color:#555; line-height:2;">
+      <li>ERP가 아닌 무역 물류 플랫폼 — 이카운트와 병행 사용 권장</li>
+      <li>유럽 수출 물류 추적에 강점</li>
+      <li>FTA 원산지 관리 필수 (유럽 수출 시)</li>
+    </ul>
+  </div>
+
+  <!-- 3.4 종합 비교표 -->
+  <h3>3.4 종합 비교표</h3>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th class="col-label">항목</th>
+        <th class="col-recommend">이카운트</th>
+        <th class="col-future">더존 iCUBE</th>
+        <th class="col-support">트레드링스</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>월 비용</td>
+        <td><strong>4만원</strong></td>
+        <td>10~30만원</td>
+        <td>기본 무료</td>
+      </tr>
+      <tr>
+        <td>회계/세무</td>
+        <td>&#9679;</td>
+        <td>&#9679;&#9679;</td>
+        <td style="color:#ccc;">&#10005;</td>
+      </tr>
+      <tr>
+        <td>재고 관리</td>
+        <td>&#9679;</td>
+        <td>&#9679;&#9679;</td>
+        <td style="color:#ccc;">&#10005;</td>
+      </tr>
+      <tr>
+        <td>원가 관리</td>
+        <td>&#9679;</td>
+        <td>&#9679;&#9679;</td>
+        <td style="color:#ccc;">&#10005;</td>
+      </tr>
+      <tr>
+        <td>수출 서류</td>
+        <td>&#9651;</td>
+        <td>&#9679;</td>
+        <td>&#9679;&#9679;</td>
+      </tr>
+      <tr>
+        <td>FTA/원산지</td>
+        <td style="color:#ccc;">&#10005;</td>
+        <td>&#9651;</td>
+        <td>&#9679;&#9679;</td>
+      </tr>
+      <tr>
+        <td>물류 추적</td>
+        <td style="color:#ccc;">&#10005;</td>
+        <td>&#9651;</td>
+        <td>&#9679;&#9679;</td>
+      </tr>
+      <tr>
+        <td>클라우드</td>
+        <td>&#9679;</td>
+        <td>&#9679;</td>
+        <td>&#9679;</td>
+      </tr>
+      <tr>
+        <td>도입 난이도</td>
+        <td style="color:var(--module-logistics); font-weight:600;">쉬움</td>
+        <td>보통</td>
+        <td style="color:var(--module-logistics); font-weight:600;">쉬움</td>
+      </tr>
+      <tr>
+        <td>JJ 현재 적합도</td>
+        <td><span class="star-rating" style="font-size:13px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td>
+        <td><span class="star-rating" style="font-size:13px;">&#9733;&#9733;&#9733;</span></td>
+        <td><span class="star-rating" style="font-size:13px;">&#9733;&#9733;&#9733;&#9733;</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ═══════════════════════ CHAPTER 04 ═══════════════════════ -->
+<div class="section-dark">
+  <div class="section-label">Chapter 04</div>
+  <h2>권장 도입 방안</h2>
+
+  <!-- 4.1 Phase 1 -->
+  <h3>4.1 Phase 1 — 즉시 도입 (2026 Q2)</h3>
+  <p style="font-size:20px; font-weight:700; color:#6ea8fe; margin-bottom:24px;">이카운트 ERP + 트레드링스</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+    <div class="phase-box phase-box-dark">
+      <h4>이카운트가 커버하는 영역</h4>
+      <ul>
+        <li><strong>회계/세무:</strong> 전자세금계산서, 부가세, 복식부기</li>
+        <li><strong>영업:</strong> 견적 &rarr; 수주 &rarr; 매출</li>
+        <li><strong>구매:</strong> 발주 &rarr; 입고 &rarr; 매입</li>
+        <li><strong>재고:</strong> 입출고, 수불부</li>
+        <li><strong>원가:</strong> 제품별 원가, 마진</li>
+        <li><strong>인사:</strong> 급여, 4대보험</li>
+      </ul>
+    </div>
+    <div class="phase-box phase-secondary">
+      <h4>트레드링스가 커버하는 영역</h4>
+      <ul>
+        <li><strong>수출 물류:</strong> B/L 추적, 운임 비교</li>
+        <li><strong>무역 서류:</strong> Invoice, Packing List</li>
+        <li><strong>FTA:</strong> 원산지증명서 관리</li>
+        <li><strong>물류 가시성:</strong> 선박 스케줄, 화물 추적</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>예상 비용</h4>
+  <div class="cost-summary">
+    <div class="cost-item cost-item-dark">
+      <div class="cost-label">이카운트 ERP</div>
+      <div class="cost-value">월 4만원</div>
+      <div class="cost-note">연 48만원</div>
+    </div>
+    <div class="cost-item cost-item-dark">
+      <div class="cost-label">트레드링스</div>
+      <div class="cost-value">무료~월 5만원</div>
+      <div class="cost-note">유료 플랜 선택 시</div>
+    </div>
+    <div class="cost-item cost-item-dark">
+      <div class="cost-label">초기 세팅 컨설팅</div>
+      <div class="cost-value">100~200만원</div>
+      <div class="cost-note">선택 사항</div>
+    </div>
+  </div>
+
+  <div class="highlight-dark">
+    <h4>총 예상 연간 비용: 약 100~200만원</h4>
+    <p style="color:#bbb; font-size:14px;">현재 엑셀 기반 운영의 보이지 않는 비용(오류 수정, 재작업, 의사결정 지연)을 감안하면 충분히 합리적인 투자입니다.</p>
+  </div>
+
+  <!-- 4.2 Phase 2 -->
+  <h3>4.2 Phase 2 — 성장 후 전환 (매출 50억+ 시)</h3>
+  <p>더존 iCUBE 전환을 검토해야 하는 시점:</p>
+
+  <div class="phase-box phase-box-dark">
+    <ul>
+      <li>직원 20명 이상으로 증가</li>
+      <li>투자 유치 후 외부 감사 체계 필요</li>
+      <li>수출 서류 자동화 필요성 증가 (월 50건+)</li>
+      <li>경영진 대시보드 고도화 필요 (EIS 리포트)</li>
+    </ul>
+  </div>
+
+  <!-- 4.3 도입 로드맵 -->
+  <h3>4.3 도입 로드맵</h3>
+
+  <div class="step-container">
+    <div class="step-item">
+      <div class="step-line">
+        <div class="step-dot">1</div>
+        <div class="step-vline"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-date">WEEK 1</div>
+        <div class="step-title">이카운트 가입 + 기초 설정</div>
+        <div class="step-detail">계정과목 설정 (수출업 특화), 거래처 등록, 제품 마스터 등록</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-line">
+        <div class="step-dot">2</div>
+        <div class="step-vline"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-date">WEEK 2</div>
+        <div class="step-title">기존 엑셀 데이터 이관 + 재고 실사</div>
+        <div class="step-detail">기존 거래 데이터 이관, 현 재고 실사 후 기초 재고 입력</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-line">
+        <div class="step-dot">3</div>
+        <div class="step-vline"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-date">WEEK 3</div>
+        <div class="step-title">직원 교육 + 병행 운영</div>
+        <div class="step-detail">이카운트 무료 교육 활용, 엑셀과 ERP 병행 운영으로 안정성 확보</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-line">
+        <div class="step-dot">4</div>
+        <div class="step-vline"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-date">WEEK 4</div>
+        <div class="step-title">ERP 단독 운영 전환</div>
+        <div class="step-detail">엑셀 병행 종료, ERP를 유일한 업무 시스템으로 전환</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-line">
+        <div class="step-dot">5</div>
+        <div class="step-vline"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-date">MONTH 2</div>
+        <div class="step-title">트레드링스 연동 + 수출 물류 세팅</div>
+        <div class="step-detail">B/L 추적, 무역 서류 관리, FTA 원산지 관리 체계 구축</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-line">
+        <div class="step-dot">6</div>
+        <div class="step-vline" style="background:transparent;"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-date">MONTH 3</div>
+        <div class="step-title">첫 월 결산 완료 + 대시보드 활용 시작</div>
+        <div class="step-detail">ERP 기반 첫 월 결산 수행, 경영 대시보드 확인 및 CEO 원격 모니터링 시작</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.4 즉시 실행 체크리스트 -->
+  <h3>4.4 즉시 실행 체크리스트</h3>
+
+  <ol class="checklist">
+    <li><div><strong>이카운트 무료 체험 가입</strong><br><span style="color:#888; font-size:13px;">ecount.com 접속 &rarr; 무료 체험 신청 (30일)</span></div></li>
+    <li><div><strong>계정과목 설정</strong><br><span style="color:#888; font-size:13px;">수출업 특화 계정 — 외화매출, 수출원가, 외화매출채권, 환차손익 등</span></div></li>
+    <li><div><strong>거래처 등록</strong><br><span style="color:#888; font-size:13px;">유럽 바이어, 국내 공급사, 물류 업체 등 모든 거래처 등록</span></div></li>
+    <li><div><strong>제품 등록</strong><br><span style="color:#888; font-size:13px;">유통 제품 + 자체 브랜드(Esthécor, Dalalé) 제품 마스터 등록</span></div></li>
+    <li><div><strong>기초 재고 입력</strong><br><span style="color:#888; font-size:13px;">재고 실사 후 현재 보유 수량 정확히 입력</span></div></li>
+    <li><div><strong>직원 교육</strong><br><span style="color:#888; font-size:13px;">이카운트 제공 무료 온라인 교육 활용 (영업, 구매, 회계 담당자)</span></div></li>
+    <li><div><strong>첫 거래 ERP 입력 시작</strong><br><span style="color:#888; font-size:13px;">실 거래를 ERP에 입력하며 시스템 적응 시작</span></div></li>
+  </ol>
+
+  <div class="callout-tip dark" style="margin-top:32px;">
+    <div class="callout-icon">&#128161;</div>
+    <div><strong>핵심 메시지:</strong> 완벽한 세팅을 기다리지 마세요. 먼저 시작하고, 사용하면서 다듬어 가는 것이 가장 빠른 길입니다. 이카운트는 월 4만원이므로 리스크가 거의 없습니다.</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<div class="footer">
+  <div class="footer-brand">MOSLAB</div>
+  <p>본 자료는 JJ MEDITEC을 위해 작성된 비밀유지 대상 컨설팅 자료입니다.</p>
+  <p>무단 복제 및 배포를 금합니다.</p>
+  <p style="margin-top:8px; color:#666;">2026.03 / v1.0</p>
+  <div class="footer-conf">CONFIDENTIAL</div>
+</div>
+
+</body>
+</html>
